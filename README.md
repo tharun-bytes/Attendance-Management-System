@@ -4,7 +4,6 @@
 ![Pandas](https://img.shields.io/badge/Pandas-2.0%2B-150458?style=for-the-badge&logo=pandas&logoColor=white)
 ![NumPy](https://img.shields.io/badge/NumPy-1.24%2B-013243?style=for-the-badge&logo=numpy&logoColor=white)
 ![Matplotlib](https://img.shields.io/badge/Matplotlib-3.7%2B-11557C?style=for-the-badge&logo=python&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.30%2B-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
 ![Deployment](https://img.shields.io/badge/Deployment-Local%20Only-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
@@ -23,8 +22,7 @@ Designed specifically to run **locally on your desktop or laptop**, this system 
   - [🔢 NumPy (Numerical Computing & Statistics)](#-numpy-numerical-computing--statistics)
   - [🐼 Pandas (Data Manipulation & Pipelines)](#-pandas-data-manipulation--pipelines)
   - [📊 Matplotlib (Data Visualization)](#-matplotlib-data-visualization)
-  - [⚡ Streamlit (Interactive User Interface)](#-streamlit-interactive-user-interface)
-  - [🐍 Python (Core Engine)](#-python-core-engine)
+  - [🐍 Python (Core Engine & Application Logic)](#-python-core-engine--application-logic)
   - [📄 CSV Files (Persistent Storage)](#-csv-files-persistent-storage)
 - [📖 5. System Architecture & How It Works](#-5-system-architecture--how-it-works)
   - [🏛️ End-to-End Data Pipeline](#️-end-to-end-data-pipeline)
@@ -63,7 +61,7 @@ This system is deliberately engineered as a **Local-First Application** rather t
 | **📶 Offline Reliability** | Fully operational in classrooms, university laboratories, and remote lecture halls without requiring an active internet connection. |
 | **💰 Zero Cloud Costs** | No AWS/GCP hosting bills, no VPS subscriptions, no serverless execution fees, and no database licensing fees. |
 | **📊 Transparent Data Ownership** | Records are stored in human-readable CSV files (`students.csv`, `attendance_data.csv`). You can inspect, modify, or back them up using Microsoft Excel, LibreOffice, or Google Sheets anytime. |
-| **⚡ Instant Setup** | Runs natively with a single command (`streamlit run app.py`). No Docker orchestration, Kubernetes clusters, or domain DNS configuration needed. |
+| **⚡ Instant Setup** | Runs natively with a single command (`python main.py`). No Docker orchestration, Kubernetes clusters, or domain DNS configuration needed. |
 
 ---
 
@@ -108,23 +106,23 @@ cd "d:\students attandance system"
 ---
 
 ### Step 3: Install Required Dependencies
-Install the required packages (`pandas`, `numpy`, `matplotlib`, `streamlit`) using `requirements.txt`:
+Install the required packages using `requirements.txt`:
 ```bash
 pip install -r requirements.txt
 ```
 
 ---
 
-### Step 4: Launch the Local Web Dashboard
-Start the local Streamlit server:
+### Step 4: Launch the Application
+Start the application launcher:
 ```bash
-streamlit run app.py
+python main.py
 ```
 
-The application will immediately launch in your default web browser at:
+The application interface will open and be accessible locally at:
 👉 **`http://localhost:8501`**
 
-*(To stop the server at any time, press <kbd>Ctrl</kbd> + <kbd>C</kbd> in your terminal).*
+*(To stop the application at any time, press <kbd>Ctrl</kbd> + <kbd>C</kbd> in your terminal).*
 
 ---
 
@@ -136,7 +134,7 @@ This project demonstrates how standard Python data science libraries combine int
 +---------------------------------------------------------------------------------+
 |                                APPLICATION STACK                                |
 +---------------------------------------------------------------------------------+
-|  [ Presentation Layer ]  -->  Streamlit (GUI Dashboard, Forms & Data Editors)   |
+|  [ Presentation Layer ]  -->  Interactive Dashboard (Forms, Reports & Editors)  |
 |  [ Visualization ]       -->  Matplotlib (Bar Charts, Donut Plots, Trend Lines) |
 |  [ Numerical Engine ]    -->  NumPy (Vectorized Calculations & Statistics)     |
 |  [ Data Pipeline ]       -->  Pandas (Cleaning, Grouping, Aggregation & Pivoting)|
@@ -244,28 +242,13 @@ This project demonstrates how standard Python data science libraries combine int
 
 ---
 
-### ⚡ Streamlit (Interactive User Interface)
+### 🐍 Python (Core Engine & Application Logic)
 
-**Streamlit** provides the reactive, browser-based user interface, converting Python scripts into an interactive local dashboard.
+**Python** binds all data components into a modular, reliable application architecture.
 
-* **Theme-Agnostic Containers (`st.container(border=True)`)**:
-  Renders KPI cards that automatically adjust to both **Dark Mode** and **Light Mode**.
-* **Direct Spreadsheet Editing (`st.data_editor`)**:
-  Allows users to edit the student roster or daily attendance records directly in an interactive grid with dropdown status selectors.
-* **Date Picker (`st.date_input`)**:
-  Integrated date selector with custom CSS removing unnecessary text cursors/carets and standardizing formatting (`YYYY-MM-DD`).
-* **Sidebar Navigation (`st.sidebar.radio`)**:
-  Intuitive section switching between Dashboard, Attendance Marking, Editing, Defaulters, and CSV tools.
-* **State Management & Instant Feedback**:
-  Uses `st.rerun()`, `st.success()`, `st.error()`, and `st.metric()` for real-time interface updates.
-
----
-
-### 🐍 Python (Core Engine)
-
-* Standard library modules (`os`, `io`, `math`, `datetime`, `unittest`).
-* Object-oriented and functional modular programming.
-* Form validation, error handling, and robust exception management.
+* **Standard Library Engineering**: Uses `os` for safe file path resolution, `io` for CSV buffer conversion, `math` for numerical calculations, `datetime` for date formatting, and `unittest` for automated verification.
+* **Modular Code Structure**: Clean separation of data loading, processing, metric computation, charting, and state management.
+* **Input Validation & Resilience**: Validates roll numbers against duplicates, verifies date formatting, and catches edge cases gracefully.
 
 ---
 
@@ -289,7 +272,7 @@ The architecture follows a modular data processing pipeline where raw records mo
 +-----------------------------------------------------------------------------------+
 |                            SYSTEM WORKFLOW & ARCHITECTURE                         |
 +-----------------------------------------------------------------------------------+
-| [ 1. User Interaction ]      -->  Streamlit Web UI (Forms, Date Pickers, Grid)    |
+| [ 1. User Interaction ]      -->  Interactive Graphical UI (Forms, Pickers, Grid) |
 |                                         │                                         |
 | [ 2. Data Validation ]       -->  Input sanitization, whitespace trim, ID uppercase|
 |                                   Deduplication on (Date + StudentID) composite key|
@@ -306,7 +289,7 @@ The architecture follows a modular data processing pipeline where raw records mo
 |                                   Consecutive recovery target calculation (3T - 4P)|
 |                                         │                                         |
 | [ 6. Visual Presentation ]   -->  Matplotlib: Threshold Bar, Donut & Turnout Trend|
-|                                   Streamlit KPI metric cards & interactive filters|
+|                                   Summary KPI metric cards & interactive filters  |
 |                                   One-click CSV / Excel export                    |
 +-----------------------------------------------------------------------------------+
 ```
@@ -446,10 +429,8 @@ pivot = attendance_df.pivot_table(
 ```text
 Attendance-Management-System/
 │
-├── .streamlit/
-│   └── config.toml         # Streamlit local configuration (telemetry disabled)
-│
-├── app.py                  # Core application (Streamlit UI, Data Science pipeline)
+├── main.py                 # Application launcher (Run with: python main.py)
+├── app.py                  # Core application (UI & Data Science analytics pipeline)
 ├── attendance_data.csv     # Persistent CSV file storing attendance logs
 ├── students.csv            # Master roster of enrolled students
 ├── test_system.py          # Automated unit test suite (8 test cases)
