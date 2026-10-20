@@ -444,7 +444,7 @@ pivot = attendance_df.pivot_table(
 ## 📂 7. Project Directory Structure
 
 ```text
-Attendance-Management-/
+Attendance-Management-System/
 │
 ├── .streamlit/
 │   └── config.toml         # Streamlit local configuration (telemetry disabled)
